@@ -1,19 +1,18 @@
-# LiteLLM 模型配置文件
-# 支持 DeepSeek + 千问 + SiliconFlow
+# LiteLLM 模型配置 - 千问优先，DeepSeek备用
 
 model_list:
-  # DeepSeek 官方 API
-  - model_name: deepseek/deepseek-chat
-    litellm_params:
-      model: deepseek/deepseek-chat
-      api_key: "os.environ/DEEPSEEK_API_KEY"
-
-  # SiliconFlow 千问 (备选)
+  # 阿里云百炼千问 (通过 SiliconFlow API 访问)
   - model_name: openai/Qwen/Qwen3.5-32B
     litellm_params:
       model: openai/Qwen/Qwen3.5-32B
       api_key: "os.environ/LITELLM_API_KEY"
       api_base: "https://api.siliconflow.cn/v1"
+
+  # DeepSeek (官方 API，余额不足时备用)
+  - model_name: deepseek/deepseek-chat
+    litellm_params:
+      model: deepseek/deepseek-chat
+      api_key: "os.environ/DEEPSEEK_API_KEY"
 
 litellm_settings:
   drop_params: true
